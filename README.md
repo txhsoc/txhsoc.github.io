@@ -1,2 +1,2 @@
-# txhsoc-hsa.github.io
+# txhsoc.github.io
 hsa map
