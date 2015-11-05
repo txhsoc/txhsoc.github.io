@@ -51,7 +51,13 @@ $.getJSON("districts.geojson",function(data){
 });
 
 $.getJSON("hsa_test1.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
+  L.geoJson(data,{
+    pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng);
+      marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.OPEN_DT);
+      return marker;
+    }
+  }).addTo(map);
 });
 </script>
 </body>
