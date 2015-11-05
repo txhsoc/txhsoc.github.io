@@ -46,7 +46,7 @@ var myStyle1 = {
     "opacity": 0.5
 };
 
-$.getJSON("districts.geojson",function(data){
+$.getJSON("districts2.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
