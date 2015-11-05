@@ -40,14 +40,8 @@ L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
     subdomains: ['otile1','otile2','otile3','otile4']
 }).addTo( map );
 
-var myStyle1 = {
-    "color": "#f22905",
-    "weight": 3,
-    "opacity": 0.5
-};
-
-$.getJSON("districts2.geojson",function(data){
-  L.geoJson(data, {style: myStyle1}).addTo(map);
+$.getJSON("districts.geojson",function(data){
+  L.geoJson(data).addTo(map);
 });
 
 $.getJSON("hsa_test1.geojson",function(data){
