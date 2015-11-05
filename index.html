@@ -45,10 +45,6 @@ var myStyle1 = {
     "weight": 2,
     "fillOpacity": .0,
 };
-var myStyle2 = {
-    "color": "#ff0000",
-    "weight": 2,
-}
 
 $.getJSON("districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
