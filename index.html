@@ -54,7 +54,7 @@ $.getJSON("hsa_test1.geojson",function(data){
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng);
-      marker.bindPopup(content);
+      marker.bindPopup('this is a test!');
       return marker;
     }
   }).addTo(map);
