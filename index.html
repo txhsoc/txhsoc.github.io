@@ -63,7 +63,7 @@ $.getJSON("hsa_test1.geojson",function(data){
         thp = feature.properties.THP;
         pd = feature.properties.PD;
       if (thp = 1) styler = myStyle3;
-      else (pd = 1) styler = myStyle2;
+      else if (pd = 1) styler = myStyle2;
       return { styler };
     },
     onEachFeature: function(feature, layer){
