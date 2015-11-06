@@ -50,7 +50,7 @@ var myStyle3 = {
     "marker-color": "#f7fe2e",
     "marker-symbol": "marker",
     "marker-size": "medium",
-}
+};
 
 $.getJSON("districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
@@ -58,10 +58,16 @@ $.getJSON("districts.geojson",function(data){
 
 $.getJSON("hsa_test1.geojson",function(data){
   L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng);
-      marker.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);
-      return marker;
+    style: function(feature){
+      var styler,
+        thp = feature.properties.THP;
+        pd = feature.properties.PD;
+      if (thp = 1) styler = myStyle3;
+      else (pd = 1) styler = myStyle2;
+      return { styler };
+    },
+    onEachFeature: function(feature, layer){
+      layer.bindPopup(("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);	
     }
   }).addTo(map);
 });
