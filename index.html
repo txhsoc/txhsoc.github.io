@@ -26,8 +26,6 @@
 
 <div id="map"></div>
 
-<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
-
 <script>
 var map = L.map('map').setView([31.129, -99.335], 6);
 
@@ -42,12 +40,25 @@ var myStyle1 = {
     "fillOpacity": .0,
 };
 
+var myStyle2 = {
+    "marker-color": "#ff0000",
+    "marker-symbol": "marker",
+    "marker-size": "medium",
+};
+
+var myStyle3 = {
+    "marker-color": "#f7fe2e",
+    "marker-symbol": "marker",
+    "marker-size": "medium",
+}
+
 $.getJSON("districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
 $.getJSON("hsa_test1.geojson",function(data){
   L.geoJson(data,{
+    style: myStyle2;
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng);
       marker.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);
