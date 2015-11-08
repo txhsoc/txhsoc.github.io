@@ -40,17 +40,15 @@ var myStyle1 = {
     "fillOpacity": .0,
 };
 
-var myStyle2 = {
-    "marker-color": "#ff0000",
-    "marker-symbol": "marker",
-    "marker-size": "medium",
-};
+var myStyle2 = L.circle([20, -0.10], 250, {
+    color: "yellow",
+    fillColor: "#FF0000",
+});
 
-var myStyle3 = {
-    "marker-color": "#f7fe2e",
-    "marker-symbol": "marker",
-    "marker-size": "medium",
-};
+var myStyle3 = L.circle([20, -0.10], 250, {
+    color: "red",
+    fillColor: "#FFFF00"
+});
 
 $.getJSON("districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
