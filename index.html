@@ -50,7 +50,7 @@ var myStyle3 = L.circle([20, -0.10], 250, {
     fillColor: "#FFFF00"
 });
 
-$.getJSON("districts.geojson",function(data){
+$.getJSON("districts_v2.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
