@@ -81,7 +81,7 @@ $.getJSON(districts, function(data) {
 $.getJSON(hsaCrashes, function(data) {
   L.geoJson(data, {
     onEachFeature: onEachFeature,
-    }
+    })
   }).addTo(map);
 })
 </script>
