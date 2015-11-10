@@ -33,8 +33,22 @@ var openMapquest = L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y
     openStreet = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'});
 
-var districts = ("districts_v2.geojson"),
-    hsaCrashes = ("hsa_test1.geojson");
+var myStyle1 = {
+    "color": "#ff0000",
+    "weight": 2,
+    "fillOpacity": .0,
+};
+
+var districts = $.getJSON("districts_v2.geojson",function(data){
+		  L.geoJson(data, {style: myStyle1}).addTo(map);
+                });
+var hsaCrashes = $.getJSON("hsa_test1.geojson",function(data){
+	           L.geoJson(data, {
+	             onEachFeature: function(feature, layer){
+	               layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD)
+	             }  
+	           }).addTo(map);
+                 });
 
 var map = L.map('map', {
     center: [31.129, -99.335],
@@ -42,16 +56,17 @@ var map = L.map('map', {
     layers: [openMapquest, districts, hsaCrashes]
 });
 
-L.control.layers({
+var baseMaps = {
     "OpenMapQuest": openMapquest,
     "OpenStreetMap": openStreet
-}).addTo(map);
-
-var myStyle1 = {
-    "color": "#ff0000",
-    "weight": 2,
-    "fillOpacity": .0,
 };
+
+var overlayData = {
+    "THP Districts": districts,
+    "HSA Crashes - 06 Nov 2015": hsaCrashes
+};
+
+L.control.layers(baseMaps, overlayData).addTo(map);
 
 //var myStyle2 = L.icon({
 //    iconUrl: 'http://icons.iconarchive.com/icons/paomedia/small-n-flat/32/map-marker-icon.png',
@@ -62,20 +77,6 @@ var myStyle1 = {
 //    color: "red",
 //    fillColor: "#FFFF00"
 //});
-
-function onEachFeature(feature, layer) {
-    layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);
-}
-
-$.getJSON(districts, function(data) {
-  L.geoJson(data, {style: myStyle1}).addTo(map);
-});
-
-$.getJSON(hsaCrashes, function(data) {
-  L.geoJson(data, {
-    onEachFeature: onEachFeature,
-    })
-  }).addTo(map);
 </script>
 </body>
 </html>
