@@ -33,6 +33,9 @@ var openMapquest = L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y
     openStreet = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'});
 
+var districts = ("districts_v2.geojson"),
+    hsaCrashes = ("hsa_test1.geojson");
+
 var map = L.map('map', {
     center: [31.129, -99.335],
     zoom: 6,
@@ -44,7 +47,12 @@ var baseMaps = {
     "OpenStreetMap": openStreet
 };
 
-L.control.layers(baseMaps).addTo(map);
+var overlayMaps = {
+    "THP Districts": districts,
+    "HSA Crashes": hsaCrashes
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
 
 var myStyle1 = {
     "color": "#ff0000",
@@ -62,25 +70,16 @@ var myStyle1 = {
 //    fillColor: "#FFFF00"
 //});
 
-$.getJSON("districts_v2.geojson",function(data){
+$.getJSON(districts, function(data) {
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
-$.getJSON("hsa_test1.geojson",function(data){
-  L.geoJson(data,{
-//    style: function(feature){
-//      var styler,
-//        thp = feature.properties.THP;
-//        pd = feature.properties.PD;
-//      if (thp = 1) styler = myStyle3;
-//      else if (pd = 1) styler = myStyle2;
-//      return { styler };
-//    },
-    onEachFeature: function(feature, layer){
+$.getJSON(hsaCrashes, function(data) {
+  L.geoJson(data, {
+    onEachFeature: function (feature, layer) {
       layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);	
     }
-  }).addTo(map);
-});
+  });
 </script>
 </body>
 </html>
