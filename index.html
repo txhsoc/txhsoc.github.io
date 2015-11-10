@@ -42,17 +42,10 @@ var map = L.map('map', {
     layers: [openMapquest, openStreet]
 });
 
-var baseMaps = {
+L.control.layers({
     "OpenMapQuest": openMapquest,
     "OpenStreetMap": openStreet
-};
-
-var overlayMaps = {
-    "HSA Crashes - 06 Nov 2015": hsaCrashes,
-    "THP Districts": districts
-};
-
-L.control.layers(baseMaps, overlayMaps).addTo(map);
+}).addTo(map);
 
 var myStyle1 = {
     "color": "#ff0000",
@@ -83,7 +76,6 @@ $.getJSON(hsaCrashes, function(data) {
     onEachFeature: onEachFeature,
     })
   }).addTo(map);
-})
 </script>
 </body>
 </html>
