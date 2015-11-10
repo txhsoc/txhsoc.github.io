@@ -70,17 +70,20 @@ var myStyle1 = {
 //    fillColor: "#FFFF00"
 //});
 
+function onEachFeature(feature, layer) {
+    layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);
+}
+
 $.getJSON(districts, function(data) {
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
 $.getJSON(hsaCrashes, function(data) {
   L.geoJson(data, {
-    onEachFeature: function (feature, layer) {
-      layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);	
+    onEachFeature: onEachFeature,
     }
-  })
-});
+  }).addTo(map);
+})
 </script>
 </body>
 </html>
