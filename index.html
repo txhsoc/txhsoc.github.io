@@ -79,7 +79,8 @@ $.getJSON(hsaCrashes, function(data) {
     onEachFeature: function (feature, layer) {
       layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);	
     }
-  });
+  })
+});
 </script>
 </body>
 </html>
