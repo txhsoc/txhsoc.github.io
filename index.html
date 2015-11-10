@@ -39,7 +39,7 @@ var districts = ("districts_v2.geojson"),
 var map = L.map('map', {
     center: [31.129, -99.335],
     zoom: 6,
-    layers: [openMapquest, openStreet]
+    layers: [openMapquest, districts, hsaCrashes]
 });
 
 L.control.layers({
