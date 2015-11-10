@@ -40,7 +40,7 @@ var map = L.map('map', {
 });
 
 var baseMaps = {
-    "Open MapQuest": openMapquest,
+    "OpenMapQuest": openMapquest,
     "OpenStreetMap": openStreet
 };
 
@@ -68,14 +68,14 @@ $.getJSON("districts_v2.geojson",function(data){
 
 $.getJSON("hsa_test1.geojson",function(data){
   L.geoJson(data,{
-    style: function(feature){
-      var styler,
-        thp = feature.properties.THP;
-        pd = feature.properties.PD;
-      if (thp = 1) styler = myStyle3;
-      else if (pd = 1) styler = myStyle2;
-      return { styler };
-    },
+//    style: function(feature){
+//      var styler,
+//        thp = feature.properties.THP;
+//        pd = feature.properties.PD;
+//      if (thp = 1) styler = myStyle3;
+//      else if (pd = 1) styler = myStyle2;
+//      return { styler };
+//    },
     onEachFeature: function(feature, layer){
       layer.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County + '<br/>' + "THP: " + feature.properties.THP + '<br/>' + "Local: " + feature.properties.PD);	
     }
