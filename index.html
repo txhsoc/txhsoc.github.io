@@ -30,11 +30,17 @@
 <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
 
 <script>
+var southWest = L.latLng(24.04, -109.05),
+    northEast = L.latLng(38.27, -90.99),
+    bounds = L.latLngBounds(southWest, northEast);
+
 var map = L.map( 'map', {
-	center: [31.129, -99.335],
-	minZoom: 0,
-	zoom: 6
+	maxBounds: bounds,
+	maxZoom: 19,
+	minZoom: 6
 });
+
+map.fitBounds(bounds);
 
 L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
