@@ -68,6 +68,10 @@ $.getJSON("mexico.geojson",function(data){
   L.geoJson(data, {style: myStyle2}).addTo(map);
 });
 
+$.getJSON("cuba.geojson",function(data){
+  L.geoJson(data, {style: myStyle2}).addTo(map);
+});
+
 $.getJSON("hsa_test1.geojson",function(data){
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
