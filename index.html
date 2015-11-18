@@ -47,12 +47,19 @@ var myStyle1 = {
     "fillOpacity": .0,
 };
 
+var myStyle2 = {
+    "color": "#000000",
+    "weight": 2,
+    "fillColor": "#a4a4a4",
+    "fillOpacity": .5,
+};
+
 $.getJSON("districts_v2.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
 $.getJSON("mexico.geojson",function(data){
-  L.geoJson(data).addTo(map);
+  L.geoJson(data, {style: myStyle2}).addTo(map);
 });
 
 $.getJSON("hsa_test1.geojson",function(data){
