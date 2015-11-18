@@ -47,7 +47,7 @@ var myStyle1 = {
     "fillOpacity": .0,
 };
 
-$.getJSON("districts.geojson",function(data){
+$.getJSON("districts_v2.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
