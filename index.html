@@ -60,6 +60,16 @@ $.getJSON("hsa_test1.geojson",function(data){
     }
   }).addTo(map);
 });
+
+$.getJSON("mexico.geojson",function(data){
+  L.geoJson(data,{
+    pointToLayer: function(feature,latlng){
+      var marker = L.marker(latlng);
+      marker.bindPopup("FIPS: " + feature.properties.FIPS_ADMIN '<br/>' + "State Name: " + feature.properties.ADMIN_NAME + '<br/>' + "Country Name: " + feature.properties.CNTRY_NAME + '<br/>' + "Population: " + feature.properties.POP_ADMIN + '<br/>' + "Sq Miles: " + feature.properties.SQMI);
+      return marker;
+    }
+  }).addTo(map);   
+});
 </script>
 </body>
 </html>
