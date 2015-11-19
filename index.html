@@ -29,33 +29,40 @@
 <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
 
 <script>
+//variable for bounding extent coordinates
 var southWest = L.latLng(20.348, -113.974),
     northEast = L.latLng(42.423, -85.134),
     bounds = L.latLngBounds(southWest, northEast);
 
+//variable for the map
 var map = L.map( 'map', {
 	maxBounds: bounds,
 	maxZoom: 19,
 	minZoom: 6
 });
 
+//keep the full extent of the map set to the bounding coordinates
 map.fitBounds(bounds);
 
+//add mapquest osm tiles for the basemap
 L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
     subdomains: ['otile1','otile2','otile3','otile4']
 }).addTo( map );
 
+//variable for the osm geocoder
 var osmGeocoder = new L.Control.OSMGeocoder();
 
 map.addControl(osmGeocoder);
-L.easyButton('fa-star', function(){alert('button works')}).addTo(map);
+//L.easyButton('fa-star', function(){alert('button works')}).addTo(map);
 
+//style variable to assign to the districts.geojson file
 var myStyle1 = {
     "color": "#ff0000",
     "weight": 2,
 };
 
+//style variable to assign to states, cuba, mexico geojson files
 var myStyle2 = {
     "color": "#000000",
     "weight": 2,
@@ -63,6 +70,7 @@ var myStyle2 = {
     "fillOpacity": .5,
 };
 
+//jquery ajax calls to grab external geojson files and add it to the map
 $.getJSON("data/thp_districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
