@@ -53,7 +53,6 @@ map.addControl(osmGeocoder);
 var myStyle1 = {
     "color": "#ff0000",
     "weight": 2,
-    "fillOpacity": .0,
 };
 
 var myStyle2 = {
@@ -63,7 +62,7 @@ var myStyle2 = {
     "fillOpacity": .5,
 };
 
-$.getJSON("data/districts_v2.geojson",function(data){
+$.getJSON("data/thp_districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
