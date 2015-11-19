@@ -63,7 +63,7 @@ var myStyle2 = {
     "fillOpacity": .5,
 };
 
-$.getJSON("data/districts_v2.geojson",function(data){
+$.getJSON("data/thp_districts.json",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
