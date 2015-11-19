@@ -80,7 +80,7 @@ $.getJSON("hsa_test1.geojson",function(data){
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
       var marker = L.marker(latlng);
-      marker.bindPopup("Region: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County);
+      marker.bindPopup("THP District: " + feature.properties.Region + '<br/>' + "Date: " + feature.properties.Date + '<br/>' + "No. Killed: " + feature.properties.Killed + '<br/>' + "City: " + feature.properties.City + '<br/>' + "County: " + feature.properties.County);
       return marker;
     }
   }).addTo(map);
