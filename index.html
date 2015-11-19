@@ -49,6 +49,7 @@ L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
 var osmGeocoder = new L.Control.OSMGeocoder();
 
 map.addControl(osmGeocoder);
+L.easyButton('fa-star', function(){alert('button works')}).addTo(map);
 
 var myStyle1 = {
     "color": "#ff0000",
