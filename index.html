@@ -25,6 +25,7 @@
 
 <div id="map"></div>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
+<script src="scripts/Leaflet.MakiMarkers.js"></script>
 <script src="scripts/Control.OSMGeocoder.js"></script>
 <link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
 
@@ -52,9 +53,8 @@ L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
 
 //variable for the osm geocoder
 var osmGeocoder = new L.Control.OSMGeocoder();
-
+//add osm geocoder to map
 map.addControl(osmGeocoder);
-//L.easyButton('fa-star', function(){alert('button works')}).addTo(map);
 
 //style variable to assign to the districts.geojson file
 var myStyle1 = {
@@ -70,7 +70,12 @@ var myStyle2 = {
     "fillOpacity": .5,
 };
 
-//jquery ajax calls to grab external geojson files and add it to the map
+//maki icon variables to assign to crash events based on thp or pd attribute
+var thpIcon = L.MakiMarkers.icon({icon: "car", color: "ffff00", size: "m"});
+
+var pdIcon = L.MakiMarkers.icon({icon: "car", color: "ff0000", size: "m"});
+
+//jquery ajax calls to grab external geojson files and add them to the map
 $.getJSON("data/thp_districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
