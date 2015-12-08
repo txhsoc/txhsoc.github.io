@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
 <link rel="stylesheet"href="style/Control.OSMGeocoder.css"/>
+<link rel="stylesheet"href="style/style.css"/>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <style>
@@ -15,16 +16,7 @@
 </head>
 
 <body>
-<style>
-.container {
-  position: absolute;
-  bottom:30px;
-  right:20px;
-  }
-</style>
-
 <div id="map"></div>
-<img src="images/hsoc.png"/>
 <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 <script src="scripts/Leaflet.MakiMarkers.js"></script>
 <script src="scripts/Control.OSMGeocoder.js"></script>
@@ -71,10 +63,27 @@ var myStyle2 = {
     "fillOpacity": .5,
 };
 
-//maki icon variables to assign to crash events based on thp or pd attribute
-var thpIcon = L.MakiMarkers.icon({icon: "car", color: "ffff00", size: "m"});
+//style variables to assign to crash events based on thp or pd attribute
+var thp = {
+	radius: 8,
+	fillColor: "#ffff00",
+	color: "#000",
+	weight: 1,
+	opacity: 1,
+	fillOpacity: 0.8
+};
+var pd = {
+	radius: 8,
+	fillColor: "#ff0000",
+	color: "#000",
+	weight: 1,
+	opacity: 1,
+	fillOpacity: 0.8
+};
 
-var pdIcon = L.MakiMarkers.icon({icon: "car", color: "ff0000", size: "m"});
+//var thpIcon = L.MakiMarkers.icon({icon: "car", color: "ffff00", size: "m"});
+
+//var pdIcon = L.MakiMarkers.icon({icon: "car", color: "ff0000", size: "m"});
 
 //jquery ajax calls to grab external geojson files and add them to the map
 $.getJSON("data/thp_districts.geojson",function(data){
@@ -94,9 +103,15 @@ $.getJSON("data/cuba.geojson",function(data){
 });
 
 $.getJSON("data/HSA_30Oct15.geojson",function(data){
-  L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng);
+  L.geoJson(data, {
+    //style: function(feature){
+	//switch (feature.properties.THP){
+		//case '1': return thp;
+		//case '0': return pd;
+	  //}
+	//}
+    pointToLayer: function(feature,latlng) {
+      var marker = L.circleMarker(latlng);
       marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
       return marker;
     }

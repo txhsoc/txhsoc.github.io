@@ -1,8 +1,12 @@
-img {
+#map-wrapper {
+	max-width: 100%;
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+.wrapper img {
 	max-width: 100%;
 	height: auto;
-	width: auto\9;
-	position: absolute;
-	left: 50px;
-	bottom: 50px;
+	width: auto;
 }
