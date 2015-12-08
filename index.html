@@ -24,8 +24,8 @@
 
 <script>
 //variable for bounding extent coordinates
-var southWest = L.latLng(20.348, -113.974),
-    northEast = L.latLng(42.423, -85.134),
+var southWest = L.latLng(22.348, -110.974),
+    northEast = L.latLng(40.423, -87.134),
     bounds = L.latLngBounds(southWest, northEast);
 
 //variable for the map
@@ -69,23 +69,25 @@ var thp = {
 	fillColor: "#ffff00",
 	color: "#000",
 	weight: 1,
-	opacity: 0.25,
-	fillOpacity: 0.8
+	opacity: 1,
+	fillOpacity: 1
 };
 var pd = {
 	radius: 5,
 	fillColor: "#ff0000",
 	color: "#000",
 	weight: 1,
-	opacity: 0.25,
-	fillOpacity: 0.8
+	opacity: 1,
+	fillOpacity: 1
 };
 
+//commented out variables
 //var thpIcon = L.MakiMarkers.icon({icon: "car", color: "ffff00", size: "m"});
 
 //var pdIcon = L.MakiMarkers.icon({icon: "car", color: "ff0000", size: "m"});
 
 //jquery ajax calls to grab external geojson files and add them to the map
+
 $.getJSON("data/thp_districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
@@ -111,7 +113,7 @@ $.getJSON("data/HSA_30Oct15.geojson",function(data){
 	  //}
 	//}
     pointToLayer: function(feature,latlng) {
-      var marker = L.circleMarker(latlng);
+      var marker = L.circleMarker(latlng, setRadius(5));
       marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
       return marker;
     }
