@@ -1,0 +1,5 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt and http://www.arcgis.com/apps/webappbuilder/copyright.txt for details.
+//>>built
+define("dojo/_base/declare dojo/_base/html jimu/utils ../BaseResultRenderer ./FeatureSetRenderer ./RecordSetRenderer".split(" "),function(b,c,d,e,f,g){var a={};a.UnsupportRenderer=b(e,{baseClass:"jimu-gp-resultrenderer-base jimu-gp-renderer-unsupport",postCreate:function(){this.inherited(arguments);c.setAttr(this.domNode,"innerHTML",d.sanitizeHTML(this.message))}});a.SimpleResultRenderer=b(e,{baseClass:"jimu-gp-resultrenderer-base jimu-gp-renderer-simple",postCreate:function(){this.inherited(arguments);
+c.setAttr(this.domNode,"innerHTML",d.sanitizeHTML(this.message))}});a.ErrorResultRenderer=b(e,{baseClass:"jimu-gp-resultrenderer-base jimu-gp-renderer-error",postCreate:function(){this.inherited(arguments);c.setAttr(this.domNode,"innerHTML",d.sanitizeHTML(this.message))}});a.RecordSetTable=g;a.DrawResultFeatureSet=f;return a});

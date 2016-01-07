@@ -1,0 +1,6 @@
+// All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+// See http://js.arcgis.com/3.15/esri/copyright.txt and http://www.arcgis.com/apps/webappbuilder/copyright.txt for details.
+//>>built
+define({"widgets/GeoLookup/nls/strings":{_widgetLabel:"GeoLookup",description:"Browse to or Drag a \x3ca href\x3d'./widgets/GeoLookup/data/sample.csv' tooltip\x3d'Download an example sheet' target\x3d'_blank'\x3e spreadsheet \x3c/a\x3e here to visualize, and append map data to it.",selectCSV:"Select a CSV",loadingCSV:"Loading CSV",savingCSV:"CSVExport",clearResults:"Clear",downloadResults:"Download",plotOnly:"Only Plot Points",plottingRows:"Ploting rows",messages:"Messages",error:{fetchingCSV:"Error fetching items from CSV store: ${0}",
+fileIssue:"File could not be processed.",notCSVFile:"Only comma delimited files (.csv) files are supported at this time.",invalidCoord:"Location fields are invalid. Please check the .csv.",tooManyRecords:"Sorry, no more than ${0} records at this time."},results:{csvLoaded:"${0} records from the CSV file have been loaded",recordsPlotted:"${0}/${1} records have been located on the map",recordsEnriched:"${0}/${1} processed, ${2} enriched against ${3}",recordsError:"${0} records had errors",recordsErrorList:"Row ${0} has an issue",
+label:"CSV Results"},_localized:{}}});

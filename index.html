@@ -1,107 +1,131 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-<meta charset=utf-8 />
-<title align=center>HSA Map</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-<link rel="stylesheet"href="style/Control.OSMGeocoder.css"/>
-<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+		<title>ArcGIS Web Application</title>
+		<link rel="shortcut icon" href="images/shortcut.png">
+		<!--[if IE 8]>
+    <link rel="stylesheet" type="text/css"  href="jimu.js/css/jimu-ie.css" />
+    <![endif]-->
+		<style type="text/css">
+		*{box-sizing: border-box;}
+      body,html {
+        width:100%;
+        height:100%;
+        margin:0;
+        padding:0;
+        overflow:hidden;
+      }
+      #main-loading{
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        overflow: hidden;
+      }
+      #main-loading #ie-note{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+      }
+      #main-loading #ie-note {
+        width: 586px;
+        height: 253px;
+        background-image: url('images/notes.png');
+        padding: 0 30px 40px 30px;
+        font-size: 14px;
+        color: #596679;
+      }
+      #ie-note .hint-title{
+        height: 40px;
+        line-height: 48px;
+        text-align: left;
+        font-weight: bold;
+      }
+      #ie-note .hint-img{
+        background-image: url('images/hint.png');
+        background-position: left;
+        padding-left: 40px;
+        margin-top: 20px;
+        background-repeat: no-repeat;
+        height: 30px;
+        text-align: left;
+        line-height: 30px;
+        font-weight: bold;
+      }
+      #ie-note span{
+        display: block;
+        line-height: 14px;
+      }
+      #main-page{
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: relative;
+      }
 
-<style>
-  body { margin:0; padding:0; }
-  html, body, #map { height: 100%; }
-</style>
-</head>
+      #jimu-layout-manager{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+      }
+		</style>
+    <link rel="stylesheet" type="text/css" href="configs/loading/loading.css" />
+		<script>
+			/*******************************
+			* This is the function you can modify to customize the loading page
+			* This function will be invoked when one resource is loaded.
+			********************************/
+			// var progress;
+			// function loadingCallback(url, i, count) {
+			// 	var loading = document.getElementById('main-loading-bar');
+			// 	loading.setAttribute('title', url);
+			//   if(!progress){
+			//     progress = document.createElement('div');
+			//     progress.setAttribute('class', 'loading-progress');
+			//     loading.appendChild(progress);
+			//   }
+			//   progress.style.width = (((i - 1)/count) * 100) + '%';
+			// }
+		</script>
+	</head>
+	<body class="claro jimu-main-font">
 
-<body>
-<style>
-.container {
-  position: absolute;
-  bottom:30px;
-  right:20px;
-  }
-</style>
+		<div id="main-loading">
 
-<div id="map"></div>
-<img src="images/hsoc.png"/>
-<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-<script src="scripts/Leaflet.MakiMarkers.js"></script>
-<script src="scripts/Control.OSMGeocoder.js"></script>
-<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
+			<!-- This is section you can modify to customize the loading page -->
+			<div id="app-loading"></div>
+      <div id="loading-gif"></div>
 
-<script>
-//variable for bounding extent coordinates
-var southWest = L.latLng(20.348, -113.974),
-    northEast = L.latLng(42.423, -85.134),
-    bounds = L.latLngBounds(southWest, northEast);
+			<!-- //////////////////    END    ////////////////////////////// -->
+			<div id="ie-note" style="display:none;">
+        <div class="hint-title">Error</div>
+        <div class="hint-img">Your browser is currently not supported.</div>
+        <p class="hint-text">
+          <span>
+            Please note that creating presentations is not supported in Internet Explorer versions 6, 7.
+          </span>
+          <br>
+          <span>
+            We recommend upgrading to the latest Internet Explorer, Google Chrome, or Firefox.
+          </span>
+          <br>
+          <span>
+            If you are using IE 8 or later, make sure you turn off "Compatibility View".
+          </span>
+        </p>
+      </div>
+		</div>
+		<div id="main-page">
+			<div id="jimu-layout-manager"></div>
+		</div>
 
-//variable for the map
-var map = L.map( 'map', {
-	maxBounds: bounds,
-	maxZoom: 25,
-	minZoom: 6
-});
-
-//keep the full extent of the map set to the bounding coordinates
-map.fitBounds(bounds);
-
-//add mapquest osm tiles for the basemap
-L.tileLayer( 'http://{s}.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://osm.org/copyright" title="OpenStreetMap" target="_blank">OpenStreetMap</a> contributors | Tiles Courtesy of <a href="http://www.mapquest.com/" title="MapQuest" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" width="16" height="16">',
-    subdomains: ['otile1','otile2','otile3','otile4']
-}).addTo( map );
-
-//variable for the osm geocoder
-var osmGeocoder = new L.Control.OSMGeocoder();
-//add osm geocoder to map
-map.addControl(osmGeocoder);
-
-//style variable to assign to the districts.geojson file
-var myStyle1 = {
-    "color": "#ff0000",
-    "weight": 2,
-};
-
-//style variable to assign to states, cuba, mexico geojson files
-var myStyle2 = {
-    "color": "#000000",
-    "weight": 2,
-    "fillColor": "#a4a4a4",
-    "fillOpacity": .5,
-};
-
-//maki icon variables to assign to crash events based on thp or pd attribute
-var thpIcon = L.MakiMarkers.icon({icon: "car", color: "ffff00", size: "m"});
-
-var pdIcon = L.MakiMarkers.icon({icon: "car", color: "ff0000", size: "m"});
-
-//jquery ajax calls to grab external geojson files and add them to the map
-$.getJSON("data/thp_districts.geojson",function(data){
-  L.geoJson(data, {style: myStyle1}).addTo(map);
-});
-
-$.getJSON("data/us_states.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
-
-$.getJSON("data/mexico.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
-
-$.getJSON("data/cuba.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
-
-$.getJSON("data/HSA_30Oct15.geojson",function(data){
-  L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-      var marker = L.marker(latlng);
-      marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
-      return marker;
-    }
-  }).addTo(map);
-});
-</script>
-</body>
+		<script src="env.js"></script>
+		<script type="text/javascript" src="simpleLoader.js"></script>
+		<script type="text/javascript" src="init.js"></script>
+	</body>
 </html>
