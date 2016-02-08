@@ -5,8 +5,9 @@
 <title align=center>HSA Map</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
-<link rel="stylesheet"href="style/Control.OSMGeocoder.css"/>
-<link rel="stylesheet"href="style/style.css"/>
+<link rel="stylesheet" href="https://www.mapbox.com/base/latest/base.css" />
+<link rel="stylesheet" href="style/Control.OSMGeocoder.css"/>
+<link rel="stylesheet" href="style/style.css"/>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 
 <style>
@@ -17,10 +18,21 @@
 
 <body>
 <div id="map"></div>
+
+<div class="buttonContainer">
+	<a href="#" id="home" class="icon home" onclick="fit()"></a>
+</div>
+
+<div class="container">
+	<a href="https://www.dps.texas.gov/">
+	<img src="images/hsoc.png" width="205" height="204" />
+</div>
+
 <script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-<script src="scripts/Leaflet.MakiMarkers.js"></script>
+<script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
+<!--<script src="scripts/Leaflet.MakiMarkers.js"></script>-->
 <script src="scripts/Control.OSMGeocoder.js"></script>
-<link href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
 
 <script>
 //variable for bounding extent coordinates
@@ -50,19 +62,14 @@ var osmGeocoder = new L.Control.OSMGeocoder();
 //add osm geocoder to map
 map.addControl(osmGeocoder);
 
+//add leaflet locate control to map
+L.control.locate().addTo(map);
+
 //style variable to assign to the districts.geojson file
 var myStyle1 = {
     "color": "#ff0000",
     "weight": 2,
 };
-
-//style variable to assign to states, cuba, mexico geojson files
-//var myStyle2 = {
-//    "color": "#000000",
-//    "weight": 2,
-//    "fillColor": "#a4a4a4",
-//    "fillOpacity": .5,
-//};
 
 //style variables to assign to crash events based on thp or pd attribute
 var thp = {
@@ -96,29 +103,13 @@ $.getJSON("data/thp_districts.geojson",function(data){
 //  L.geoJson(data, {style: myStyle2}).addTo(map);
 //});
 
-//$.getJSON("data/mexico.geojson",function(data){
-//  L.geoJson(data, {style: myStyle2}).addTo(map);
-//});
+$.getJSON("data/HSA_30Oct15.geojson",function(data){
+  L.geoJson(data, {style: thp}).addTo(map);
+});
 
-//$.getJSON("data/cuba.geojson",function(data){
-//  L.geoJson(data, {style: myStyle2}).addTo(map);
-//});
-
-//$.getJSON("data/HSA_30Oct15.geojson",function(data){
-//  L.geoJson(data, {
-    //style: function(feature){
-	//switch (feature.properties.THP){
-		//case '1': return thp;
-		//case '0': return pd;
-	  //}
-	//}
-//    pointToLayer: function(feature,latlng) {
-//      var marker = L.circleMarker(latlng, setRadius(5));
-//      marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
-//      return marker;
-//    }
-//  }).addTo(map);
-//});
+function fit() {
+	map.fitBounds(bounds);
+};
 </script>
 </body>
 </html>

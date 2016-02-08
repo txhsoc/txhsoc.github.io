@@ -1,3 +1,19 @@
+body { margin: 0; padding: 0; }
+
+#map { position: absolute; top: 0px; bottom: 0px; width: 100% }
+
+.buttonContainer {background: #FFF; display: block; position: absolute; top: 100px; left: 10px; width: 28px; height: 28px; text-align: center; padding: 1px; border: 1px solid rgba(0, 0, 0, 0.4); border-radius: 3px;}
+		.buttonContainer1:hover {background: #A9A9A9;}
+
+.container {position: fixed; width: 13%; padding-bottom: 12%; bottom: 10px; left: 10px;}
+
+img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  }
+
 #map-wrapper {
 	max-width: 100%;
 	width: 100%;
@@ -9,4 +25,38 @@
 	max-width: 100%;
 	height: auto;
 	width: auto;
+}
+
+/*! Version: 0.43.0
+Date: 2015-05-27 */
+
+/* Compatible with Leaflet 0.7 */
+.leaflet-touch .leaflet-bar-part-single {
+  -webkit-border-radius: 7px 7px 7px 7px;
+  border-radius: 3px;
+  border-bottom: none;
+}
+.leaflet-touch .leaflet-control-locate {
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  background-clip: padding-box;
+}
+
+.leaflet-control-locate a {
+  font-size: 1.4em;
+  color: #444;
+}
+.leaflet-control-locate.active a {
+  color: #2074B6;
+}
+.leaflet-control-locate.active.following a {
+  color: #FC8428;
+}
+
+/* Mapbox specific adjustments */
+.leaflet-control-locate a {
+  padding: 3px 0 0 8px;
+}
+.leaflet-control-locate.requesting a {
+  padding: 3px 0 0 4px;
 }
