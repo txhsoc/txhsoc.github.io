@@ -32,7 +32,8 @@ var southWest = L.latLng(22.348, -110.974),
 var map = L.map( 'map', {
 	maxBounds: bounds,
 	maxZoom: 25,
-	minZoom: 6
+	minZoom: 6,
+	zoomControl: false
 });
 
 //keep the full extent of the map set to the bounding coordinates
@@ -81,7 +82,6 @@ var pd = {
 	fillOpacity: 1
 };
 
-//commented out variables
 //var thpIcon = L.MakiMarkers.icon({icon: "car", color: "ffff00", size: "m"});
 
 //var pdIcon = L.MakiMarkers.icon({icon: "car", color: "ff0000", size: "m"});
@@ -104,21 +104,21 @@ $.getJSON("data/cuba.geojson",function(data){
   L.geoJson(data, {style: myStyle2}).addTo(map);
 });
 
-$.getJSON("data/HSA_30Oct15.geojson",function(data){
-  L.geoJson(data, {
+//$.getJSON("data/HSA_30Oct15.geojson",function(data){
+//  L.geoJson(data, {
     //style: function(feature){
 	//switch (feature.properties.THP){
 		//case '1': return thp;
 		//case '0': return pd;
 	  //}
 	//}
-    pointToLayer: function(feature,latlng) {
-      var marker = L.circleMarker(latlng, setRadius(5));
-      marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
-      return marker;
-    }
-  }).addTo(map);
-});
+//    pointToLayer: function(feature,latlng) {
+//      var marker = L.circleMarker(latlng, setRadius(5));
+//      marker.bindPopup('<b>THP District:  </b>' + feature.properties.Region + '<br/>' + '<b>Date:  </b>' + feature.properties.Date + '<br/>' + '<b>No. Killed:  </b>' + feature.properties.Killed + '<br/>' + '<b>City:  </b>' + feature.properties.City + '<br/>' + '<b>County:  </b>' + feature.properties.County);
+//      return marker;
+//    }
+//  }).addTo(map);
+//});
 </script>
 </body>
 </html>
