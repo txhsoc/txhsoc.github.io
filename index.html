@@ -57,12 +57,12 @@ var myStyle1 = {
 };
 
 //style variable to assign to states, cuba, mexico geojson files
-var myStyle2 = {
-    "color": "#000000",
-    "weight": 2,
-    "fillColor": "#a4a4a4",
-    "fillOpacity": .5,
-};
+//var myStyle2 = {
+//    "color": "#000000",
+//    "weight": 2,
+//    "fillColor": "#a4a4a4",
+//    "fillOpacity": .5,
+//};
 
 //style variables to assign to crash events based on thp or pd attribute
 var thp = {
@@ -92,17 +92,17 @@ $.getJSON("data/thp_districts.geojson",function(data){
   L.geoJson(data, {style: myStyle1}).addTo(map);
 });
 
-$.getJSON("data/us_states.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
+//$.getJSON("data/us_states.geojson",function(data){
+//  L.geoJson(data, {style: myStyle2}).addTo(map);
+//});
 
-$.getJSON("data/mexico.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
+//$.getJSON("data/mexico.geojson",function(data){
+//  L.geoJson(data, {style: myStyle2}).addTo(map);
+//});
 
-$.getJSON("data/cuba.geojson",function(data){
-  L.geoJson(data, {style: myStyle2}).addTo(map);
-});
+//$.getJSON("data/cuba.geojson",function(data){
+//  L.geoJson(data, {style: myStyle2}).addTo(map);
+//});
 
 //$.getJSON("data/HSA_30Oct15.geojson",function(data){
 //  L.geoJson(data, {
