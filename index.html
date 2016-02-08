@@ -4,11 +4,16 @@
 <meta charset=utf-8 />
 <title align=center>HSA Map</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
 <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.css" />
+<script src="scripts/L.Control.Locate.min.js"></script>
+<link rel="stylesheet" href="style/L.Control.Locate.css" />
+<script src="scripts/Control.OSMGeocoder.js"></script>
 <link rel="stylesheet" href="https://www.mapbox.com/base/latest/base.css" />
-<link rel="stylesheet" href="style/Control.OSMGeocoder.css"/>
 <link rel="stylesheet" href="style/style.css"/>
+<link rel="stylesheet" href="style/Control.OSMGeocoder.css"/>
 <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 <style>
   body { margin:0; padding:0; }
@@ -28,12 +33,6 @@
 	<img src="images/hsoc.png" width="205" height="204" />
 </div>
 
-<script src="http://cdn.leafletjs.com/leaflet-0.7.5/leaflet.js"></script>
-<script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-locatecontrol/v0.43.0/L.Control.Locate.min.js"></script>
-<!--<script src="scripts/Leaflet.MakiMarkers.js"></script>-->
-<script src="scripts/Control.OSMGeocoder.js"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" />
-
 <script>
 //variable for bounding extent coordinates
 var southWest = L.latLng(22.348, -110.974),
@@ -44,7 +43,7 @@ var southWest = L.latLng(22.348, -110.974),
 var map = L.map( 'map', {
 	maxBounds: bounds,
 	maxZoom: 25,
-	minZoom: 6,
+	minZoom: 1,
 	zoomControl: false
 });
 
